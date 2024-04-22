@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+  <style>
+    body{
+      box-sizing: border-box;
+      background-color: cornflowerblue;
+      font-family: cursive;
+    }
+    .container{
+    margin: 0 auto; 
+    margin-top: 10vh;
+    width: 600px;
+    height: 600px;
+    background-color: lightyellow;
+    text-align: center;
+    align-items:center;
+
+      border: solid rgba(0, 0, 0, 0.477) 2px;
+      border-radius: 10px;
+    }
+    @keyframes float {
+    0% {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add shadow at the bottom */
+    }
+    50% {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Increase shadow size */
+    }
+    100% {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Back to original shadow */
+    }
+  }
+    .btn{
+      cursor: pointer;
+      animation: float 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">Edit Article</h1>
+
+    <form action="/articles/<%= article.id %>?_method=PUT" method="POST">
+      <%- include('_form_fields') %>
+    </form>
+  </div>
+</body>
+</html>

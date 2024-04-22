@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+  <style>
+    body{
+      box-sizing: border-box;
+      background-color: cornflowerblue;
+      font-family: cursive;
+    }
+    .heading{
+      text-align: center;
+      color: aliceblue;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10vh auto;
+      padding: 10px;
+      background-color: lightyellow;
+      border: solid rgba(0, 0, 0, 0.477) 2px;
+      border-radius: 10px;
+      min-height: 200px; /* Minimum height to prevent container from collapsing */
+      max-height: 80vh; /* Maximum height to prevent container from expanding too much */
+      overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    }
+    .card {
+      margin: 10px 0;
+      max-width: 500px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes float {
+    0% {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Add shadow at the bottom */
+    }
+    50% {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Increase shadow size */
+    }
+    100% {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Back to original shadow */
+    }
+  }
+    .btn1{
+      cursor: pointer;
+      animation: float 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="mp.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <div class="heading">
+    <h1>Basic Bloging Platform</h1>
+  <br>
+  <h4> creating, reading, updating, and deleting data from MongoDB</h4>
+  <br>
+  <a href="/articles/new" class="btn btn1 btn-success">New Article</a>
+  </div>
+  <div class="container">
+
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= article.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+          <div class="card-text mb-2"><%= article.description %></div>
+          <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+          <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
