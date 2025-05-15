@@ -5,10 +5,7 @@ const articleRouter = require('./routes/articles')
 const methodOverride = require('method-override')
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect('mongodb+srv://<db_username>:<db_password>@cluster0.lkhiyui.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
 
 
 app.set('view engine', 'ejs')
